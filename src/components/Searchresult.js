@@ -2,8 +2,7 @@ import React from 'react';
 import './Searchresult.css';
 import { connect } from 'react-redux';
 const Searchresult = (props) =>{
-	console.log(props.state.data.result)
-	let movielist =props.state.data.result ? props.state.data.result.map((movie) =>{
+	let movielist = props.state.data.result ? props.state.data.result.map((movie) =>{
 		return(
 			<div key={movie.id} className='movie_list' onClick={()=>{handlemovieClick(movie)}}>
 				<div>{movie.title}</div>
@@ -13,7 +12,10 @@ const Searchresult = (props) =>{
 	}) : "no";
 
 	function handlemovieClick(value) {
-		console.log(value)
+		
+		let found = props.state.wishlist.some(el => el.id === value.id);
+ 		!found && props.updateWishlist(value);
+		console.log(props.state)
 	}
 
 	return(	
@@ -29,4 +31,10 @@ const mapStoreToProps = (state) =>{
 	}
 }
 
-export default connect(mapStoreToProps)(Searchresult);
+const mapDispatchToProps = (dispatch) =>{
+	return{
+		updateWishlist : (wishlistmovie) => {dispatch({"type":"UPDATE_WISHLIST", "payload": wishlistmovie})}
+	}
+}
+
+export default connect(mapStoreToProps, mapDispatchToProps)(Searchresult);
