@@ -2,38 +2,54 @@ import React,{useState} from 'react';
 import ReactDOM from 'react-dom';
 import {NavLink,Link} from 'react-router-dom';
 import './Home.css';
+import { connect } from 'react-redux';
 
-const Home = () =>{
+const Home = (props) =>{
 	const [values,setValues] = useState(
 		{	
-			count:0,
-			res : [
-				{
-					"res": "0"
-				}
-			]	
+			srchentry: "mnj"
 		}
 	);
 
-	function handleClick(){
-		
+	function handleChange(e) {
 		setValues({
-			...values,
-			res:[
-				...values.res,
-				{"res": "1"}
-				]
-			
+			srchentry: e.target.value
 		})
-		console.log(values)
+	}
+
+	function handleClick(e){
+			e.preventDefault();
+		   	const url = `https://api.themoviedb.org/3/search/movie?api_key=5dcf7f28a88be0edc01bbbde06f024ab&language=en-US&query=${values.srchentry}&page=1&include_adult=true`;
+		  	fetch(url)
+		     .then((response) => {
+		        return response.json();
+		     })
+		     .then((data) => {
+		      props.updatestate({"entry": values.srchentry,"result": data.results});
+		     })
+		     .then(()=>{
+		     	props.history.push('/searchresult')
+		     });
 	}
 
 	return(
 		<div>
-			Home
+			<input placeholder='enter search' onChange={handleChange} value={values.srchentry}/>
 			<button onClick={handleClick}>click me</button>
 		</div>
 	)
+
 }
 
-export default Home;
+const mapStoreToProps = (state) =>{
+	return{
+		state:state,
+	}
+}
+const mapDispatchToProps = (dispatch) =>{
+	return{
+		updatestate : (req_data) => {dispatch({type:'UPDATE_ENTRY',payload:req_data})},
+	}
+}
+
+export default connect(mapStoreToProps,mapDispatchToProps)(Home);
