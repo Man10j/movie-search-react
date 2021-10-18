@@ -1,5 +1,8 @@
 const initialState = {
-	data: [],
+	data: [{
+		entry:"yes",
+		result:[]
+	}],
 	wishlist:[]
 }
 

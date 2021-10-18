@@ -1,3 +1,23 @@
 .movie_list{
 	padding: 10px;
+	color: #fff;
+}
+#home_icon{
+	color: #fff;
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    right: 0;
+    top: 10px;
+}
+.srchresult{
+	color: #fff;
+}
+#wishlisticon{
+	color: #fff;
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    right: 0;
+    top: 80px;
 }

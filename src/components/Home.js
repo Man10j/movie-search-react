@@ -8,35 +8,27 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import Bannerimg from './media/banner.jpg';
 
 const Home = (props) =>{
-	const [values,setValues] = useState(
-		{	
-			srchentry: ""
-		}
-	);
 
-	function handleChange(e) {
-		setValues({
-			srchentry: e.target.value
-		})
-	}
+	const [values,setValues] = useState("");
 
 	function handleClick(e){
 			e.preventDefault();
 
-			if(values.srchentry){
-				const url = `https://api.themoviedb.org/3/search/movie?api_key=5dcf7f28a88be0edc01bbbde06f024ab&language=en-US&query=${values.srchentry}&page=1&include_adult=true`;
+			if(values){
+				const url = `https://api.themoviedb.org/3/search/movie?api_key=5dcf7f28a88be0edc01bbbde06f024ab&language=en-US&query=${values}&page=1&include_adult=true`;
 			  	fetch(url)
 			     .then((response) => {
 			        return response.json();
 			     })
 			     .then((data) => {
-			      props.updatedata({"entry": values.srchentry,"result": data.results});
+			      props.updatedata({"entry": values,"result": data.results});
 			     })
 			     .then(()=>{
 			     	props.history.push('/searchresult')
 			     });
 			}
 			else{
+				props.updatedata({"entry": "","result": []});
 				props.history.push('/searchresult')
 			}
 		   
@@ -47,7 +39,7 @@ const Home = (props) =>{
 			<div className="home_pg_cont">
 				<form onSubmit={handleClick} className="form">
 					<SearchIcon id="srch_icon" />
-					<input placeholder='Search here....' className='search_input' onChange={handleChange} value={values.srchentry}/>
+					<input placeholder='Search here....' className='search_input' onChange={e=> setValues(e.target.value)} value={values}/>
 					
 					<button type="submit" className="srch_btn"><ArrowForwardIcon id='arrow_btn'/></button>
 				</form>
