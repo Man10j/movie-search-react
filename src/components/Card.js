@@ -2,18 +2,18 @@
 import React, { useState,useEffect }from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from "react-router-dom";
+import './Card.css';
 
 const Card = (props) =>{
-
+	console.log(props)
 	let history = useHistory();
 	const [values, setValues] = useState();
 	 useEffect(()=>{
 	let movielist = props.mvlist.map((movie) =>{
 			return(
-				<div key={movie.id} className='movie_list'  onClick={()=>{handlemovieClick(movie)}}>
-					<div>{movie.title}</div>
-					<div>{movie.release_date}</div>
+				<div key={movie.id}  className='movie_list_card' onClick={()=>{handlemovieClick(movie)}}>
 					<img src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}`} />
+					<div className="card_movie_title">{movie.title}</div>
 				</div>
 			)
 		})
@@ -21,13 +21,14 @@ const Card = (props) =>{
 	},[]);
 		
 	function handlemovieClick(value) {
-		history.push("/Preview", {data:value})
+		console.log(value.title)
+		history.push(`/Preview/${props.state.data.entry}/${value.title}/`, {data:value})
 		
 	}
 
 	return(	
 
-		<div>{values}</div>
+		<div className="card_list">{values}</div>
 
 	)
 }

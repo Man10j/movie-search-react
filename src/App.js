@@ -13,9 +13,9 @@ const App =() =>{
       <div>
         <Redirect to="/home" />
         <Route exact path="/home" component={Home} />
-        <Route exact path="/searchresult" component={Searchresult} />
+        <Route path="/searchresult" component={Searchresult} />
          <Route exact path="/wishlist" component={Wishlist} />
-         <Route path="/Preview" component={Preview}/>
+         <Route path="/Preview/:movie/" component={Preview}/>
       </div>
     </BrowserRouter>
 

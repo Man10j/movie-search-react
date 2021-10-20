@@ -14,7 +14,6 @@ const Searchresult = (props) =>{
 	return(	
 		<div>
 			<NavLink to='/home'><HomeIcon id="home_icon"/></NavLink>
-			<NavLink to='/wishlist'><BookmarkIcon id="wishlisticon" /></NavLink>
 			{
 				Array.isArray(props.state.data.result) && props.state.data.result.length ? 
 				<div className='srchresult'><Card mvlist={props.state.data.result} /></div> : <div className="nosrch"><img className='nosrch_img' src={Noresult} alt='noresult img' /> 
