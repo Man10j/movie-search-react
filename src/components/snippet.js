@@ -34,3 +34,6 @@
 			</div> 
 			:
 			 <div className='srchresult'><Card mv_res={props.state.data} /></div>}
+
+
+			 <Card mvlist={values.mvlist} />

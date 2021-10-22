@@ -7,6 +7,7 @@
     padding: 20px;
     border-radius: 10px;
     margin: 10px;
+    justify-content: space-around;
 }
 .card_list{
 	    display: flex;
@@ -16,4 +17,25 @@
 .card_movie_title{
 	padding-top:10px;
 	text-align: center;
+    color: #fff;
+}
+.card_btns{
+    padding-top: 10px;
+}
+.preview_btn{
+    border: none;
+    background: #000;
+    width: 90px;
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 3px;
+    color: #fff;
+}
+.wishlist_btn{
+    border: none;
+    background: #000;
+    width: 90px;
+    height: 30px;
+    border-radius: 3px;
+    color: #fff;
 }
