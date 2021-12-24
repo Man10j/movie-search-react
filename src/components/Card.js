@@ -1,7 +1,7 @@
-
 import React, { useState,useEffect }from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from "react-router-dom";
+import Noimg from './media/no_img.png';
 import './Card.css';
 
 const Card = (props) =>{
@@ -11,7 +11,7 @@ const Card = (props) =>{
 	let movielist = props.mvlist.map((movie) =>{
 			return(
 				<div key={movie.id}  className='movie_list_card'>
-					<img src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}`} />
+					{movie.poster_path ? <img src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}`}  alt="movieposter"/> : <img src={Noimg} className='noimg'  alt="movieposter"/>}
 					<div className="card_movie_title">{movie.title}</div>
 					<div className="card_btns">
 						<button className="preview_btn" onClick={()=>{handlemovieClick(movie)}}>Preview</button>
@@ -21,17 +21,17 @@ const Card = (props) =>{
 				</div>
 			)
 		})
+		function handlemovieClick(value) {
+			history.push(`/Preview/${props.state.data.entry}/${value.title}/`, {data:value})
+			
+		}
+		function addtowishlist(value) {
+			props.updateWishlist(value)
+		}
+	
 		setValues(movielist)
-	},[]);
+	},[props,history]);
 		
-	function handlemovieClick(value) {
-		console.log(value.title)
-		history.push(`/Preview/${props.state.data.entry}/${value.title}/`, {data:value})
-		
-	}
-	function addtowishlist(value) {
-		props.updateWishlist(value)
-	}
 
 	return(	
 

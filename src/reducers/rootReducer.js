@@ -21,6 +21,11 @@ const rootReducer = (state= initialState, action) =>{
 					action.payload
 				]
 			}
+		case "DELETE_DATA":
+			return{
+				...state,
+				wishlist: []
+			}
 		default:
 			return state;
 	}
@@ -29,3 +34,6 @@ const rootReducer = (state= initialState, action) =>{
 }
 
 export default rootReducer;
+
+
+

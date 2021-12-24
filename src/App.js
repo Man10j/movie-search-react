@@ -4,11 +4,11 @@ import './App.css';
 import Searchresult from './components/Searchresult';
 import Wishlist from './components/Wishlist';
 import Preview from './components/Preview';
+import {BrowserRouter, Route,Redirect} from 'react-router-dom';
 
-
-import {BrowserRouter, Route,Switch, Redirect} from 'react-router-dom';
 const App =() =>{
   return(
+
     <BrowserRouter>
       <div>
         <Redirect to="/home" />

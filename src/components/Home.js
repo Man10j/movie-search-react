@@ -1,6 +1,5 @@
 import React,{useState} from 'react';
-import ReactDOM from 'react-dom';
-import {NavLink,Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import './Home.css';
 import { connect } from 'react-redux';
 import SearchIcon from "@material-ui/icons/Search";
@@ -9,7 +8,6 @@ import Bannerimg from './media/banner.jpg';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 
 const Home = (props) =>{
-
 	const [values,setValues] = useState("");
 
 	function handleClick(e){
@@ -66,15 +64,15 @@ const Home = (props) =>{
 
 }
 
-const mapStoreToProps = (state) =>{
+const StoreToProps = (state) =>{
 	return{
 		state:state,
 	}
 }
 const mapDispatchToProps = (dispatch) =>{
 	return{
-		updatedata : (req_data) => {dispatch({type:'UPDATE_DATA',payload:req_data})},
+		updatedata : (req_data) => {dispatch({type:'UPDATE_DATA',payload:req_data})}
 	}
 }
 
-export default connect(mapStoreToProps,mapDispatchToProps)(Home);
+export default connect(StoreToProps,mapDispatchToProps)(Home);

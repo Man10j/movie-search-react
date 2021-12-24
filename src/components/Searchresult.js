@@ -1,15 +1,12 @@
-import React, {useState, useEffect  }from 'react';
+import React from 'react';
 import './Searchresult.css';
 import { connect } from 'react-redux';
 import HomeIcon from '@material-ui/icons/Home';
-import {NavLink,Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import Noresult from './media/noresult.jpg';
 import Card from './Card';
 const Searchresult = (props) =>{
-	const [values, setValues] = useState();
-
-	
 
 	return(	
 		<div>

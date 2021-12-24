@@ -1,21 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import './Preview.css';
 import HomeIcon from '@material-ui/icons/Home';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import {NavLink,Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import { useHistory } from "react-router-dom";
+import Noimg from './media/no_img.png';
 
 const Preview = (props) =>{
-	let movie = props.location.state.data;
+
 	let history = useHistory();
-	console.log(history)
-	const [values, setValues] = useState({
-		moviename : movie.title,
-		movieposter: `https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}`,
-		movieoverview: movie.overview,
-		movierelease: movie.release_date,
-	});
+	const [values, setValues] = useState({});
+	useEffect(()=>{
+		let movie = props.location.state.data;
+		let movieposter = movie.poster_path ? `https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}` : Noimg;
+		setValues({
+			moviename: movie.title,
+			movieposter: movieposter,
+			movieoverview: movie.overview,
+			movierelease: movie.release_date
+
+		});
+	},[props,history])
 	
 	return(
 		<div>

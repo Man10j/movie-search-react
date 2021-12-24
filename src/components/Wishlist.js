@@ -1,25 +1,25 @@
 
 import React, { useState,useEffect }from 'react';
 import { connect } from 'react-redux';
-import Card from './Card';
 import { useHistory } from "react-router-dom";
 import HomeIcon from '@material-ui/icons/Home';
-import {NavLink,Link} from 'react-router-dom';
-import BookmarkIcon from '@material-ui/icons/Bookmark';
+import {NavLink} from 'react-router-dom';
 import ImageSearchIcon from '@material-ui/icons/ImageSearch';
 import Noresult from './media/noresult.jpg';
 import './Wishlist.css';
 import './Card.css';
+import Noimg from './media/no_img.png';
 
 const Wishlist = (props) =>{
 	let history = useHistory();
-	let movie_wishlist = props.state.wishlist.filter((v,i,a)=>a.findIndex(t=>(t.id === v.id))===i)
 	const [values, setValues] = useState();
  	useEffect(()=>{
+	let movie_wishlist = props.state.wishlist.filter((v,i,a)=>a.findIndex(t=>(t.id === v.id))===i)
 	let movielist = movie_wishlist.map((movie) =>{
+		
 			return(
 				<div key={movie.id}  className='movie_list_card'>
-					<img src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}`} />
+					<img src={movie.poster_path ? `https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}`: Noimg} className='movie_poster' alt="movie_poster"/>
 					<div className="card_movie_title">{movie.title}</div>
 					<div className="card_btns">
 						<button className="preview_btn" onClick={()=>{handlemovieClick(movie)}}>Preview</button>
@@ -28,14 +28,13 @@ const Wishlist = (props) =>{
 				</div>
 			)
 		})
+		function handlemovieClick(value) {
+			history.push(`/Preview/${props.state.data.entry}/${value.title}/`, {data:value})
+		}
 		setValues(movielist)
-	},[]);
+	},[props,history]); 
 
-	function handlemovieClick(value) {
-		console.log(value.title)
-		history.push(`/Preview/${props.state.data.entry}/${value.title}/`, {data:value})
-		
-	}
+
 	return(
 		<div>
 			<NavLink to='/home'><HomeIcon id="home_icon"/></NavLink>
@@ -59,4 +58,11 @@ const mapStoreToProps = (state) =>{
 	}
 }
 
-export default connect(mapStoreToProps)(Wishlist);
+const mapDispatchToProps = (dispatch) =>{
+	return{
+		deletewishlist : () => {dispatch({type:'DELETE_DATA'})}
+	}
+}
+
+
+export default connect(mapStoreToProps,mapDispatchToProps)(Wishlist);
