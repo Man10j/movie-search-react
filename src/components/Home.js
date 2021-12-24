@@ -49,7 +49,9 @@ const Home = (props) =>{
 	return(
 		<div>
 		<NavLink to='/wishlist'><BookmarkIcon id="home_wishlisticon"/></NavLink>
+		<h1 className='app_title'>Movie Search</h1>
 			<div className="home_pg_cont">
+			
 				<form onSubmit={handleClick} className="form">
 					<SearchIcon id="srch_icon" />
 					<input placeholder='Search here....' className='search_input' onChange={e=> setValues(e.target.value)} value={values}/>
