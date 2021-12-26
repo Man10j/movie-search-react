@@ -1,38 +1,38 @@
-.preview_container{
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 500px;
-    text-align: center;
-    padding: 10px;
-    margin: 50px auto 0;
-    background: rgba(0,0,0,0.3);
+.preview_container {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 500px;
+  text-align: center;
+  padding: 10px;
+  margin: 50px auto 0;
+  background: rgba(0, 0, 0, 0.3);
 }
-.preview_data{
-    color: #BA8B02;
+.preview_data {
+  color: #ba8b02;
 }
-#home_icon{
-	color: #a2ab58;
-    width: 50px;
-    height: 50px;
-    position: fixed;
-    right: 0;
-    top: 10px;
+#home_icon {
+  color: #a2ab58;
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  right: 0;
+  top: 10px;
 }
-#back_icon{
-    color: #a2ab58;
-    width: 43px;
-    height: 55px;
-    position: fixed;
-    right: 0;
-    top: 143px;
+#back_icon {
+  color: #a2ab58;
+  width: 43px;
+  height: 55px;
+  position: fixed;
+  right: 0;
+  top: 143px;
 }
-#wishlisticon{
-    color: #a2ab58;
-    width: 50px;
-    height: 50px;
-    position: fixed;
-    right: 0;
-    top: 80px;
+#wishlisticon {
+  color: #a2ab58;
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  right: 0;
+  top: 80px;
 }
