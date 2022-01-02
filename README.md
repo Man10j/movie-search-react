@@ -7,7 +7,7 @@
 
 It has been debloyed in netlify
 
-open [https://moviesearch-react-man10j.netlify.app/](https://moviesearch-react-man10j.netlify.app/)
+open [https://moviesearchreact.web.app/](https://moviesearchreact.web.app/)
 
 ### `npm start`
 
